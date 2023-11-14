@@ -14,6 +14,16 @@ async function checkHubId(req, res, next) {
   }
 }
 
+function checkNewHub(req, res, next) {
+  const { name } = req.body;
+  if (name !== undefined && typeof name === "string" && name.length && name.trim()) {
+    next();
+  } else {
+   next({ status: 422, message: "please provide a name for the hub" });
+  }
+}
+
 module.exports = {
-  checkHubId,
+    checkHubId,
+    checkNewHub,
 };
