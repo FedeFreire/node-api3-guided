@@ -4,7 +4,7 @@ const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
 
-function customMorgan(req, res, next) {
+function customMorgan(req, res, next) { //logger middleware
   console.log(`it was a ${req.method} request`);
   next();
 }

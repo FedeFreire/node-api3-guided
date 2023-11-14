@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require("express");
 const { checkHubId, checkNewHub } = require("./hubs-middleware.js");
 const Hubs = require("./hubs-model.js");
@@ -15,10 +16,9 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", checkHubId, (req, res, next) => {
   res.json(req.hub);
-}
-);
+});
 
-router.post("/",checkNewHub, (req, res, next) => {
+router.post("/", checkNewHub, (req, res, next) => {
   Hubs.add(req.body)
     .then((hub) => {
       res.status(201).json(hub);
@@ -61,14 +61,11 @@ router.post("/:id/messages", checkHubId, (req, res, next) => {
 });
 
 router.use((err, req, res, next) => {
-  // eslint-disable-line
   res.status(err.status || 500).json({
     customMessage: "Something tragic inside the hubs router!",
     message: err.message,
     stack: err.stack,
   });
 });
-
-
 
 module.exports = router;
